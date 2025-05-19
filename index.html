@@ -82,6 +82,7 @@
             const password = url.searchParams.get("password");
 
             if (username && password) {
+                console.log("Redirecting to original URL:", decodedText);
                 window.location.href = decodedText;
             } else {
                 alert("QR code tidak valid, username/password tidak ditemukan");
