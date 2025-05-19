@@ -76,19 +76,21 @@
     let html5QrCode;
 
     function onScanSuccess(decodedText) {
-      try {
-        const url = new URL(decodedText);
-        const username = url.searchParams.get("username");
-        const password = url.searchParams.get("password");
+        try {
+            const url = new URL(decodedText);
+            const username = url.searchParams.get("username");
+            const password = url.searchParams.get("password");
 
-        if (username && password) {
-          console.log({ username, password });
-          window.location.href = `login.html?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
+            if (username && password) {
+                window.location.href = decodedText;
+            } else {
+                alert("QR code tidak valid, username/password tidak ditemukan");
+            }
+        } catch {
+            alert("QR code tidak valid");
         }
-      } catch (error) {
-        console.error("Invalid QR code content:", error);
-      }
     }
+
 
     function startScanner() {
       html5QrCode = new Html5Qrcode("reader");
